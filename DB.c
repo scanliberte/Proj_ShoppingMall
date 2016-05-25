@@ -1,9 +1,13 @@
+#include <stdio.h>
+#include "func.h"
+
 void login() {
 	FILE* fp;
 	char ID[20];
 	char PW[20];
 	char cID[20];
 	char cPW[20];
+	int strl = 0;
 	int sw = 0;
 
 	printf("ID를 입력하세요 : ");
@@ -18,21 +22,39 @@ void login() {
 		fscanf(fp, "%s", cID);
 
 		if (strcmp(ID, cID) == 0) {	//** ID값 비교
-			sw = 1;
+			sw = TRUE;
 			break;
+		}
+		else {
+			sw = FALSE;
 		}
 	}	//** while1_end
 
-	if (sw == 0) {
+	fseek(fp, 1L, SEEK_CUR);
+	fgets(cPW, sizeof(cPW), fp);
+	strl = strlen(cPW);	//** cPW 길이
+
+	if (sw == FALSE) {
 		printf("일치하는 ID가 없습니다.");
 	}
 	else {
-		printf("PW를 입력하세요 : ");
-		scanf("%s", PW);
+		while (1) {
+			printf("PW를 입력하세요 : ");
+			scanf("%s", PW);
 
-		fseek(fp, 1L, SEEK_CUR);
-		//fread(cPW, sizeof(char), 1, fp);
-		printf("%s", cPW);
+			for (int i = 0; i < strl; i++) {
+				cPW[i] = cPW[i];
+				if (i == strl-1) {
+					cPW[i] = '\0';
+				}
+			}
+
+			if (strcmp(cPW, PW) == 0) {
+				//** 로그인 UI
+				printf("로그인 UI\n");
+				break;
+			}
+		}
 	}
 }
 
@@ -63,8 +85,11 @@ void membership() {
 
 			if (strcmp(man.ID, cID) == 0) {	//** ID값 비교
 				printf("중복되는 아이디가 있습니다.\n");
-				sw = 1;
+				sw = TRUE;
 				break;
+			}
+			else {
+				sw = FALSE;
 			}
 		}	//** while2_end
 
