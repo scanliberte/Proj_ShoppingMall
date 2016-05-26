@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "func.h"
 
 void login() {
@@ -35,27 +34,26 @@ void login() {
 	strl = strlen(cPW);	//** cPW 길이
 
 	if (sw == FALSE) {
-		printf("일치하는 ID가 없습니다.");
+		printf("일치하는 ID가 없습니다.\n");
+		system("pause");
 	}
 	else {
 		while (1) {
 			printf("PW를 입력하세요 : ");
 			scanf("%s", PW);
 
-			for (int i = 0; i < strl; i++) {
-				cPW[i] = cPW[i];
-				if (i == strl-1) {
-					cPW[i] = '\0';
-				}
-			}
+			cPW[strl-1] = '\0';	//** 파일 끝에 강제 '\n'을 '\0'으로 강제 변환(비밀번호 확인을 위해)
 
 			if (strcmp(cPW, PW) == 0) {
 				//** 로그인 UI
 				printf("로그인 UI\n");
 				break;
 			}
-		}
-	}
+			else {
+				printf("PW가 틀렸습니다.");
+			}
+		}	//** while_end
+	}	//** if_end
 }
 
 void membership() {
@@ -108,7 +106,7 @@ void membership() {
 	}
 
 	fprintf(fp, "%s %s\n", man.ID, man.PW);
-	
+
 	fclose(fp);
 	printf("회원가입이 되었습니다.\n");
 }
