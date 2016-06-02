@@ -55,16 +55,23 @@ int runQuery(char *query)
 
 int main(void)
 {
+	int field;
+	int i;
 	if (connectDB() < 0) {
 		return -1;
 	}
 
-	if (runQuery("select id from user") < 0) {
+	if (runQuery("select * from fish")) {
 		return -2;
 	}
 
-	while ((row = mysql_fetch_row(res)) != NULL) {
-		printf("%s\n", row[0]);
+	field = mysql_num_fields(res);
+
+	while ((row = mysql_fetch_row(res))) {
+		for (i = 0; i < field; i++) {
+			printf("%s ", row[i]?row[i]:"NULL");
+		}
+		printf("\n");
 	}
 
 	printf("MySQL Client Version: %s\n", mysql_get_client_info());
@@ -73,5 +80,3 @@ int main(void)
 
 	return 0;
 }
-
-http://www.mimul.com/pebble/default/2009/08/04/1249383360000.html
