@@ -13,7 +13,7 @@ void errorMsg(char *errMsg)
 // 디비 연결
 int connectDB(void)
 {
-	char* server = "127.0.0.1";
+	char* server = "58.235.169.201";
 	char* user = "guest1";
 	char* password = "1q2w3e4r";
 	char* database = "project_db";
@@ -157,6 +157,8 @@ char* login() {
 
 	printf("ID를 입력해 주세요 : ");
 	scanf_s("%s", cID, sizeof(cID));
+
+	strcpy_s(currnetUserId, sizeof(cID), cID);
 
 	if (strcmp("root", cID)) {		// 관리자인지 사용자인지 확인
 		if (runQuery("select * from user")) {
@@ -434,15 +436,19 @@ int menuDB(int sel) {
 	switch (sel) {
 	case 1:
 		menu_meatDB();
+		selectedTable = "menu_meat";
 		break;
 	case 2:
 		menu_fruitsDB();
+		selectedTable = "menu_fruits";
 		break;
 	case 3:
 		menu_vegetableDB();
+		selectedTable = "menu_vegetable";
 		break;
 	case 4:
 		menu_fish();
+		selectedTable = "menu_fish";
 		break;
 	}
 }

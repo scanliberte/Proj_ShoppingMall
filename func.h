@@ -13,6 +13,9 @@ MYSQL *conn;
 #define TRUE 1
 #define FALSE 0
 
+char currnetUserId[32];
+char* selectedTable;
+int selectedId;
 
 //** UI 함수들
 void select_1();			//** 처음 선택문

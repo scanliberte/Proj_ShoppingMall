@@ -1,1 +1,5 @@
-﻿  shopping_mall.vcxproj -> C:\Users\hj\Documents\GitHub\Proj_ShoppingMall\x64\Debug\shopping_mall.exe
+﻿  UI.c
+c:\users\hj\documents\github\proj_shoppingmall\ui.c(169): warning C4098: 'order': 'void' 함수에서 값을 반환하고 있습니다.
+c:\users\hj\documents\github\proj_shoppingmall\ui.c(186): warning C4098: 'order': 'void' 함수에서 값을 반환하고 있습니다.
+c:\users\hj\documents\github\proj_shoppingmall\ui.c(115): warning C4101: 'total_price' :참조되지 않은 지역 변수입니다.
+  shopping_mall.vcxproj -> C:\Users\hj\Documents\GitHub\Proj_ShoppingMall\x64\Debug\shopping_mall.exe
