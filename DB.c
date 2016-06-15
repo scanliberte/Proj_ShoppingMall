@@ -429,6 +429,20 @@ int check_cash_point() {
 	system("pause");
 }
 
+int saving_point(int total_price) {
+	char temp_query[1024] = { 0, };
+
+	sprintf_s(
+		temp_query,
+		sizeof(temp_query),
+		"update point set point=(point+%.0f) where id='%s'",
+		((float)total_price)*0.2, currnetUserId);
+
+	if (runQuery(temp_query)) {
+		return -2;
+	}
+}
+
 int menuDB(int sel) {
 	switch (sel) {
 	case 1:
@@ -552,4 +566,6 @@ int orderDB(int amount, char address[]) {
 	if (runQuery(temp_query)) {
 		return -2;
 	}
+
+	saving_point(total_price);
 }

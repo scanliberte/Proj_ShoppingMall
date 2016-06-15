@@ -43,6 +43,7 @@ int orderDB();			//** 주문
 int spend_pointDB();	//** 마일리지 사용여부
 int charge_cashDB();	//** 캐쉬 충전
 int check_cash_point();	//** 캐쉬 및 마일리지 확인
+int saving_point(int total_price);	//** 포인트 적립
 
 int member_leaveDB();		//** 회원탈퇴
 int member_leaveDB_user();	//** 회원탈퇴_user
