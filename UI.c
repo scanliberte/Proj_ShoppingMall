@@ -120,23 +120,25 @@ void order() {
 		printf("번호를 입력하세요 (-1 = 뒤로) : ");
 		scanf_s("%d", &sel);
 
-		if (sel == -1) {
-			printf("주문을 끝냅니다.\n");
-			break;
-		}
-
 		if (sel > 0 && sel < 5) {
 			menuDB(sel);
 		}
 		else {
+			if (sel == -1) {
+				printf("주문을 끝냅니다.\n");
+				break;
+			}
 			printf("잘못입력하셨습니다.\n");
 			system("pause");
 		}
 		
 		//++ 주문추가 db
 	}	//** end_while
-
+	fflush(stdin);
 	printf("배송지를 입력하세요 : ");
-	scanf_s("%s", address);
+	scanf_s("%s", address, sizeof(address));
+	//fgets(address, sizeof(address), stdin);
+	printf("%s", address);
+	system("pause");
 	//++ 배송지 db
 }
