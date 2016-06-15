@@ -429,6 +429,40 @@ int check_cash_point() {
 	system("pause");
 }
 
+int spend_cash(int total_price) {
+	char temp_query[1024] = { 0, };
+
+	sprintf_s(
+		temp_query,
+		sizeof(temp_query),
+		"select cash from cash where id='%s'",
+		currnetUserId);
+
+	if (runQuery(temp_query)) {
+		return -2;
+	}
+
+	row = mysql_fetch_row(res);
+	atoi(row[0]);
+
+	if(atoi(row[0]) >= total_price) {
+		sprintf_s(
+			temp_query,
+			sizeof(temp_query),
+			"update cash set cash=(cash-%d) where id='%s'",
+			total_price, currnetUserId);
+
+		if (runQuery(temp_query)) {
+			return -2;
+		}
+	}
+	else {
+		return -1;
+	}
+
+	return 0;
+}
+
 int saving_point(int total_price) {
 	char temp_query[1024] = { 0, };
 
@@ -553,6 +587,12 @@ int orderDB(int amount, char address[]) {
 	price = atoi(row[1]);
 
 	total_price = amount * price;
+
+	if (spend_cash(total_price)) {
+		printf("캐쉬가 부족합니다!\n");
+		system("pause");
+		return -3;
+	}
 
 	sprintf_s(
 		temp_query,
