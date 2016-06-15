@@ -8,46 +8,46 @@ void select_1() {
 	system("cls");
 
 	while (1) {	//** while2
-		printf("1. ë¡œê·¸ì¸\n");
-		printf("2. íšŒì›ê°€ìž…\n");
-		printf("ì´ìš©í•˜ì‹¤ ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ");
+		printf("1. ·Î±×ÀÎ\n");
+		printf("2. È¸¿ø°¡ÀÔ\n");
+		printf("ÀÌ¿ëÇÏ½Ç ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
 		scanf_s("%d", &sel1);
 
 		switch (sel1) {	//** switch2
 		case 1:
 			system("cls");
-			printf("-----------ë¡œê·¸ì¸-----------\n");
-			pID = login();	//** DB ë¡œê·¸ì¸ í•¨ìˆ˜
-			
+			printf("-----------·Î±×ÀÎ-----------\n");
+			pID = login();	//** DB ·Î±×ÀÎ ÇÔ¼ö
+
 			if (!strcmp(pID, "1")) {
 				system("cls");
-				printf("ì—†ëŠ” ì•„ì´ë””ìž…ë‹ˆë‹¤. ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.\n");
+				printf("¾ø´Â ¾ÆÀÌµðÀÔ´Ï´Ù. ·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù.\n");
 			}
 			else if (!strcmp(pID, "2")) {
 				system("cls");
-				printf("ë¹„ë°€ë²ˆí˜¸ë¥¼ í‹€ë¦¬ì…¨ìŠµë‹ˆë‹¤. ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.\n");
+				printf("ºñ¹Ð¹øÈ£¸¦ Æ²¸®¼Ì½À´Ï´Ù. ·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù.\n");
 			}
 			else if (strcmp(pID, "root")) {
 				select_2();
 			}
 			else {
-				printf("ê´€ë¦¬ìž ëª¨ë“œ\n");
-				//ê´€ë¦¬ìž ëª¨ë“œ
+				printf("°ü¸®ÀÚ ¸ðµå\n");
+				//°ü¸®ÀÚ ¸ðµå
 			}
-			
+
 			break;
 
 		case 2:
 			system("cls");
-			printf("-----------íšŒì›ê°€ìž…-----------\n");
-			membership();	//** DB íšŒì›ê°€ìž… í•¨ìˆ˜
+			printf("-----------È¸¿ø°¡ÀÔ-----------\n");
+			membership();	//** DB È¸¿ø°¡ÀÔ ÇÔ¼ö
 			break;
-		default :
+		default:
 			if (sel1 == -1) {
 				exit(1);
 			}
 			else {
-				printf("ìž˜ëª»ìž…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤\n");
+				printf("Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù\n");
 				break;
 			}
 		}	//** switch2_end
@@ -60,39 +60,39 @@ void select_2() {
 
 	while (sw) {
 		system("cls");
-		printf("----------ë¡œê·¸ì¸ ì„±ê³µ------------\n");
-		printf("1.ì£¼ë¬¸\n");
-		printf("2.ìºì‰¬ì¶©ì „\n");
-		printf("3.ìºì‰¬ ë° ë§ˆì¼ë¦¬ì§€ í™•ì¸\n");
-		printf("4.íšŒì›íƒˆí‡´\n");
-		printf("ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”(-1 = ë¡œê·¸ì¸í™”ë©´) : ");
+		printf("----------·Î±×ÀÎ ¼º°ø------------\n");
+		printf("1.ÁÖ¹®\n");
+		printf("2.Ä³½¬ÃæÀü\n");
+		printf("3.Ä³½¬ ¹× ¸¶ÀÏ¸®Áö È®ÀÎ\n");
+		printf("4.È¸¿øÅ»Åð\n");
+		printf("¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä(-1 = ·Î±×ÀÎÈ­¸é) : ");
 		scanf_s("%d", &sel);
 
 		switch (sel) {
 		case 1:
 			system("cls");
-			printf("-----------ì£¼ë¬¸-----------\n");
-			//** ë©”ë‰´íŒ db
-			//** ì£¼ë¬¸ db
+			printf("-----------ÁÖ¹®-----------\n");
+			//** ¸Þ´ºÆÇ db
+			//** ÁÖ¹® db
 			order();
 			//spend_point();
 			break;
 		case 2:
 			system("cls");
-			printf("-----------ìºì‰¬ì¶©ì „-----------\n");
+			printf("-----------Ä³½¬ÃæÀü-----------\n");
 			charge_cashDB();
 			break;
 		case 3:
 			system("cls");
-			printf("-----------ìºì‰¬ ë° ë§ˆì¼ë¦¬ì§€ í™•ì¸-----------\n");
+			printf("-----------Ä³½¬ ¹× ¸¶ÀÏ¸®Áö È®ÀÎ-----------\n");
 			check_cash_point();
 			break;
 		case 4:
 			system("cls");
-			printf("-----------íšŒì›íƒˆí‡´-----------\n");
+			printf("-----------È¸¿øÅ»Åð-----------\n");
 			member_leaveDB();
-			printf("íšŒì›íƒˆí‡´ ë˜ì—ˆìŠµë‹ˆë‹¤.\n");
-			printf("ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.\n");
+			printf("È¸¿øÅ»Åð µÇ¾ú½À´Ï´Ù.\n");
+			printf("·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù.\n");
 			system("pause");
 			sel = -1;
 			break;
@@ -101,7 +101,7 @@ void select_2() {
 				sw = 0;
 				break;
 			}
-			printf("ìž˜ëª»ìž…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤\n");
+			printf("Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù\n");
 			break;
 		}
 	}
@@ -113,11 +113,11 @@ void order() {
 
 	while (1) {
 		printf("----------category----------\n");
-		printf("1. ìœ¡ë¥˜\n");
-		printf("2. ê³¼ì¼\n");
-		printf("3. ì±„ì†Œ\n");
-		printf("4. ìƒì„ \n");
-		printf("ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” (-1 = ë’¤ë¡œ) : ");
+		printf("1. À°·ù\n");
+		printf("2. °úÀÏ\n");
+		printf("3. Ã¤¼Ò\n");
+		printf("4. »ý¼±\n");
+		printf("¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä (-1 = µÚ·Î) : ");
 		scanf_s("%d", &sel);
 
 		if (sel > 0 && sel < 5) {
@@ -125,20 +125,20 @@ void order() {
 		}
 		else {
 			if (sel == -1) {
-				printf("ì£¼ë¬¸ì„ ëëƒ…ë‹ˆë‹¤.\n");
+				printf("ÁÖ¹®À» ³¡³À´Ï´Ù.\n");
 				break;
 			}
-			printf("ìž˜ëª»ìž…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.\n");
+			printf("Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.\n");
 			system("pause");
 		}
-		
-		//++ ì£¼ë¬¸ì¶”ê°€ db
+
+		//++ ÁÖ¹®Ãß°¡ db
 	}	//** end_while
 	fflush(stdin);
-	printf("ë°°ì†¡ì§€ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ");
+	printf("¹è¼ÛÁö¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
 	scanf_s("%s", address, sizeof(address));
 	//fgets(address, sizeof(address), stdin);
 	printf("%s", address);
 	system("pause");
-	//++ ë°°ì†¡ì§€ db
+	//++ ¹è¼ÛÁö db
 }

@@ -3,18 +3,18 @@
 char mID[30];
 char* pID = mID;
 
-// ì—ëŸ¬ ë©”ì„¸ì§€ ì¶œë ¥
+// ¿¡·¯ ¸Ş¼¼Áö Ãâ·Â
 void errorMsg(char *errMsg)
 {
 	printf("%s", errMsg);
 	printf("Error Meassage : %s\n", mysql_error(conn));
 }
 
-// ë””ë¹„ ì—°ê²°
+// µğºñ ¿¬°á
 int connectDB(void)
 {
 	char* server = "127.0.0.1";
-	char* user = "root";
+	char* user = "guest1";
 	char* password = "1q2w3e4r";
 	char* database = "project_db";
 
@@ -34,7 +34,7 @@ int connectDB(void)
 	return 0;
 }
 
-// ë””ë¹„ ì—°ê²° í•´ì œ
+// µğºñ ¿¬°á ÇØÁ¦
 void closeDB(void)
 {
 	if (res)
@@ -42,7 +42,7 @@ void closeDB(void)
 	mysql_close(conn);
 }
 
-// ì¿¼ë¦¬ ì‹¤í–‰
+// Äõ¸® ½ÇÇà
 int runQuery(char *query)
 {
 	//mysql_query(conn, "set names utf8");
@@ -56,21 +56,21 @@ int runQuery(char *query)
 	return 0;
 }
 
-int membership() {	//** íšŒì›ê°€ì…
-	
+int membership() {	//** È¸¿ø°¡ÀÔ
+
 	member_user();
 	member_cash();
 	member_point();
 }
-int member_user() {	//** íšŒì›ê°€ì… user
+int member_user() {	//** È¸¿ø°¡ÀÔ user
 	char cPW[30];
-	char comm[100] = { "insert into user value (\"" };	//** sql ëª…ë ¹ë¬¸
+	char comm[100] = { "insert into user value (\"" };	//** sql ¸í·É¹®
 	int len, idlen, pwlen;
 	int i;
 
 	len = strlen(comm);
 
-	printf("IDë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+	printf("ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
 	scanf_s("%s", mID, sizeof(mID));
 
 	idlen = strlen(mID);
@@ -83,7 +83,7 @@ int member_user() {	//** íšŒì›ê°€ì… user
 	comm[len + idlen + 1] = ',';
 	comm[len + idlen + 2] = '\"';
 
-	printf("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+	printf("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
 	scanf_s("%s", cPW, sizeof(cPW));
 
 	pwlen = strlen(cPW);
@@ -102,7 +102,7 @@ int member_user() {	//** íšŒì›ê°€ì… user
 		return -2;
 	}
 }
-int member_cash() {	//** íšŒì›ê°€ì… cash
+int member_cash() {	//** È¸¿ø°¡ÀÔ cash
 	char com_cash[100] = { "insert into cash value (\"" };
 	int len, idlen;
 	int i;
@@ -124,7 +124,7 @@ int member_cash() {	//** íšŒì›ê°€ì… cash
 		return -2;
 	}
 }
-int member_point() {	//** íšŒì›ê°€ì… point
+int member_point() {	//** È¸¿ø°¡ÀÔ point
 	char com_point[100] = { "insert into point value (\"" };
 	int len, idlen;
 	int i;
@@ -155,10 +155,10 @@ char* login() {
 	int sw = 1;
 
 
-	printf("IDë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš” : ");
+	printf("ID¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä : ");
 	scanf_s("%s", cID, sizeof(cID));
 
-	if (strcmp("root", cID)) {		// ê´€ë¦¬ìì¸ì§€ ì‚¬ìš©ìì¸ì§€ í™•ì¸
+	if (strcmp("root", cID)) {		// °ü¸®ÀÚÀÎÁö »ç¿ëÀÚÀÎÁö È®ÀÎ
 		if (runQuery("select * from user")) {
 			return -2;
 		}
@@ -176,7 +176,7 @@ char* login() {
 		}
 	}
 	else {
-		printf("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+		printf("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
 		scanf_s("%s", cPW, sizeof(cPW));
 
 		if (strcmp("root", cPW)) {
@@ -190,29 +190,29 @@ char* login() {
 		}
 	}
 
-	if (sw == 0) {	//** ë¡œê·¸ì¸ ì„±ê³µí–ˆì„ ê²½ìš°
-		printf("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+	if (sw == 0) {	//** ·Î±×ÀÎ ¼º°øÇßÀ» °æ¿ì
+		printf("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
 		scanf_s("%s", cPW, sizeof(cPW));
 
 		len = strlen(comm);
 		idlen = strlen(cID);
 
-		for (int i = 0; i < idlen; i++) {	//** commì— idì¶”ê°€
+		for (int i = 0; i < idlen; i++) {	//** comm¿¡ idÃß°¡
 			comm[len + i] = cID[i];
 		}
 
 		comm[len + idlen] = '\"';
 		comm[len + idlen + 1] = ';';
-		
-		if (runQuery(comm)) {	//** ì¿¼ë¦¬ ì‹¤í–‰
+
+		if (runQuery(comm)) {	//** Äõ¸® ½ÇÇà
 			return -2;
 		}
 
 		field = mysql_num_fields(res);
 
-		while ((row = mysql_fetch_row(res))) {	//** í•„ë“œë¥¼ ì½ì–´ì˜¨ë‹¤
-			for (int i = 0; i < field; i++) {	//** í•„ë“œ ìˆ˜ ë§Œí¼
-				if (!strcmp(cPW, row[i] ? row[i] : "NULL")) {	//** ë¹„ë°€ë²ˆí˜¸ ë¹„êµ
+		while ((row = mysql_fetch_row(res))) {	//** ÇÊµå¸¦ ÀĞ¾î¿Â´Ù
+			for (int i = 0; i < field; i++) {	//** ÇÊµå ¼ö ¸¸Å­
+				if (!strcmp(cPW, row[i] ? row[i] : "NULL")) {	//** ºñ¹Ğ¹øÈ£ ºñ±³
 					sw = 1;
 				}
 				break;
@@ -220,8 +220,8 @@ char* login() {
 			printf("\n");
 		}
 		if (sw == 1) {
-			strcpy_s(mID, sizeof(cID),cID);		//** mIDì— cIDë¥¼ ë³µì‚¬í•œë‹¤
-			printf("ë¡œê·¸ì¸ ì„±ê³µ\n");
+			strcpy_s(mID, sizeof(cID), cID);		//** mID¿¡ cID¸¦ º¹»çÇÑ´Ù
+			printf("·Î±×ÀÎ ¼º°ø\n");
 			return pID;
 		}
 		else {
@@ -235,7 +235,7 @@ char* login() {
 	}
 }
 
-int member_leaveDB() {	//** íšŒì›íƒˆí‡´
+int member_leaveDB() {	//** È¸¿øÅ»Åğ
 	member_leaveDB_user();
 	member_leaveDB_cash();
 	member_leaveDB_point();
@@ -307,7 +307,7 @@ int member_leaveDB_point() {
 	}
 }
 
-//int spend_pointDB() {	//** ë§ˆì¼ë¦¬ì§€ ì‚¬ìš©ì—¬ë¶€
+//int spend_pointDB() {	//** ¸¶ÀÏ¸®Áö »ç¿ë¿©ºÎ
 //	char comm[100] = { "update point set point=point-" };
 //	char comm_1[100] = { " where id=\"" };
 //	int len, len_1, idlen, pointlen;
@@ -323,38 +323,38 @@ int member_leaveDB_point() {
 //	}
 //}
 
-int charge_cashDB() {	//** ìºì‰¬ ì¶©ì „
+int charge_cashDB() {	//** Ä³½¬ ÃæÀü
 	char comm[100] = { "update cash set cash=cash+" };
 	char comm_1[100] = { " where id=\"" };
 	char comm_2[100] = { "select cash from cash where id=\"" };
 	int len, len_1, len_2, idlen, cashlen;
 	char add_cash[50];
 
-	printf("ìºì‰¬ë¥¼ ì–¼ë§ˆë‚˜ ì¶©ì „í•˜ì‹œê² ìŠµë‹ˆê¹Œ? : ");
+	printf("Ä³½¬¸¦ ¾ó¸¶³ª ÃæÀüÇÏ½Ã°Ú½À´Ï±î? : ");
 	scanf_s("%s", add_cash, sizeof(add_cash));
 
-	cashlen = strlen(add_cash);	//** add_cash ê¸¸ì´
-	len = strlen(comm);			//** comm ê¸¸ì´
-	idlen = strlen(mID);		//** ID ê¸¸ì´
-	
-	for (int i = 0; i < cashlen; i++) {	//** commì— add_cash ì¶”ê°€
+	cashlen = strlen(add_cash);	//** add_cash ±æÀÌ
+	len = strlen(comm);			//** comm ±æÀÌ
+	idlen = strlen(mID);		//** ID ±æÀÌ
+
+	for (int i = 0; i < cashlen; i++) {	//** comm¿¡ add_cash Ãß°¡
 		comm[len + i] = add_cash[i];
 	}
 
 	len = strlen(comm);
 	len_1 = strlen(comm_1);
 
-	for (int i = 0; i < len_1; i++) {	//** commì— comm_1 ì¶”ê°€
+	for (int i = 0; i < len_1; i++) {	//** comm¿¡ comm_1 Ãß°¡
 		comm[len + cashlen + i] = comm_1[i];
 	}
 
-	for (int i = 0; i < idlen; i++) {	//** commì— id ì¶”ê°€
+	for (int i = 0; i < idlen; i++) {	//** comm¿¡ id Ãß°¡
 		comm[len + cashlen + len_1 + i] = mID[i];
 	}
 
 	comm[len + cashlen + len_1 + idlen] = '\"';
 	comm[len + cashlen + len_1 + idlen + 1] = ';';
-	
+
 
 	if (runQuery(comm)) {
 		return -2;
@@ -362,20 +362,20 @@ int charge_cashDB() {	//** ìºì‰¬ ì¶©ì „
 
 	len_2 = strlen(comm_2);
 
-	for (int i = 0; i < idlen; i++) {	//** SQLëª…ë ¹ì–´ ì¡°í•©
+	for (int i = 0; i < idlen; i++) {	//** SQL¸í·É¾î Á¶ÇÕ
 		comm_2[len_2 + i] = mID[i];
 	}
 
 	comm_2[len_2 + idlen] = '\"';
 	comm_2[len_2 + idlen + 1] = ';';
-	
+
 	if (runQuery(comm_2)) {
 		return -2;
 	}
 
 	while ((row = mysql_fetch_row(res))) {
 		for (int i = 0; i < 1; i++) {
-			printf("%së‹˜ì˜ cashëŠ” %sì› ìˆìŠµë‹ˆë‹¤.", mID, row[i] ? row[i] : "NULL");
+			printf("%s´ÔÀÇ cash´Â %s¿ø ÀÖ½À´Ï´Ù.", mID, row[i] ? row[i] : "NULL");
 		}
 		printf("\n");
 	}
@@ -387,19 +387,19 @@ int check_cash_point() {
 	char comm_point[100] = { "select point from point where id=\"" };
 	int len, idlen;
 
-	len = strlen(comm_cash);	//** cashê¸¸ì´ êµ¬í•˜ê¸°
-	idlen = strlen(mID);		//** IDê¸¸ì´ êµ¬í•˜ê¸°
+	len = strlen(comm_cash);	//** cash±æÀÌ ±¸ÇÏ±â
+	idlen = strlen(mID);		//** ID±æÀÌ ±¸ÇÏ±â
 
-	for (int i = 0; i < idlen; i++) {	//** SQLëª…ë ¹ì–´ ì¡°í•©
+	for (int i = 0; i < idlen; i++) {	//** SQL¸í·É¾î Á¶ÇÕ
 		comm_cash[len + i] = mID[i];
 	}
 
 	comm_cash[len + idlen] = '\"';
 	comm_cash[len + idlen + 1] = ';';
 
-	len = strlen(comm_point);	//** pointê¸¸ì´ êµ¬í•˜ê¸°
+	len = strlen(comm_point);	//** point±æÀÌ ±¸ÇÏ±â
 
-	for (int i = 0; i < idlen; i++) {	//** SQLëª…ë ¹ì–´ ì¡°í•©
+	for (int i = 0; i < idlen; i++) {	//** SQL¸í·É¾î Á¶ÇÕ
 		comm_point[len + i] = mID[i];
 	}
 
@@ -412,7 +412,7 @@ int check_cash_point() {
 
 	while ((row = mysql_fetch_row(res))) {
 		for (int i = 0; i < 1; i++) {
-			printf("%së‹˜ì˜ cashëŠ” %sì› ìˆìŠµë‹ˆë‹¤.", mID, row[i] ? row[i] : "NULL");
+			printf("%s´ÔÀÇ cash´Â %s¿ø ÀÖ½À´Ï´Ù.", mID, row[i] ? row[i] : "NULL");
 		}
 		printf("\n");
 	}
@@ -423,7 +423,7 @@ int check_cash_point() {
 
 	while ((row = mysql_fetch_row(res))) {
 		for (int i = 0; i < 1; i++) {
-			printf("%së‹˜ì˜ pointëŠ” %sì› ìˆìŠµë‹ˆë‹¤.", mID, row[i] ? row[i] : "NULL");
+			printf("%s´ÔÀÇ point´Â %s¿ø ÀÖ½À´Ï´Ù.", mID, row[i] ? row[i] : "NULL");
 		}
 		printf("\n");
 	}
