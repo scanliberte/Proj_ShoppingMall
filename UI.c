@@ -123,12 +123,7 @@ void order() {
 
 		if (sel > 0 && sel < 5) {
 			menuDB(sel);
-
-			printf("몇번 품목을 구입하시겠습니까 : ");
-			scanf_s("%d", &selectedId);
-
-			printf("수량을 입력하세요 : ");
-			scanf_s("%d", &amount);
+			break;
 		} 
 		else if (sel == -1) {
 			printf("주문을 끝냅니다.\n");
@@ -141,6 +136,12 @@ void order() {
 
 		//++ 주문추가 db
 	}	//** end_while
+
+	printf("몇번 품목을 구입하시겠습니까 : ");
+	scanf_s("%d", &selectedId);
+
+	printf("수량을 입력하세요 : ");
+	scanf_s("%d", &amount);
 
 	printf("배송지를 입력하세요 : ");
 	getchar();
