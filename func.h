@@ -18,7 +18,7 @@ char* selectedTable;
 int selectedId;
 
 //** UI 함수들
-void select_1();			//** 처음 선택문
+void select_1();		//** 처음 선택문
 void select_2();		//** 로그인 후 선택문
 void order();			//** 주문
 						//void spend_point();		//** 마일리지 사용여부

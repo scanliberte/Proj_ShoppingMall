@@ -242,7 +242,6 @@ int member_leaveDB() {	//** È¸¿øÅ»Åð
 	member_leaveDB_cash();
 	member_leaveDB_point();
 }
-
 int member_leaveDB_user() {
 	char comm[100] = { "delete from user where id=\"" };
 	int len, idlen;
@@ -264,7 +263,6 @@ int member_leaveDB_user() {
 		return -2;
 	}
 }
-
 int member_leaveDB_cash() {
 	char comm[100] = { "delete from cash where id=\"" };
 	int len, idlen;
@@ -286,7 +284,6 @@ int member_leaveDB_cash() {
 		return -2;
 	}
 }
-
 int member_leaveDB_point() {
 	char comm[100] = { "delete from point where id=\"" };
 	int len, idlen;
@@ -521,6 +518,38 @@ int menu_fish() {
 	}
 }
 
-int orderDB() {
-	char comm[100] = { "in" };
+int orderDB(int amount, char address[]) {
+	char temp_query[1024] = { 0, };
+	char menu_name[32] = { 0, };
+	int price = 0;
+	int total_price = 0;
+
+	sprintf_s(
+		temp_query,
+		sizeof(temp_query),
+		"select item_name, item_value from %s where item_num=%d",
+		selectedTable, selectedId);
+
+	if (runQuery(temp_query)) {
+		return -2;
+	}
+
+	row = mysql_fetch_row(res);
+	strcpy_s(menu_name, sizeof(menu_name), row[0]);
+	price = atoi(row[1]);
+
+	total_price = amount * price;
+
+	sprintf_s(
+		temp_query,
+		sizeof(temp_query),
+		"Insert into request "
+		"(id, menu_name, amount, total_price, address) "
+		"values "
+		"('%s', '%s', '%d', '%d', '%s')",
+		currnetUserId, menu_name, amount, total_price, address);
+
+	if (runQuery(temp_query)) {
+		return -2;
+	}
 }

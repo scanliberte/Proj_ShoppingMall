@@ -109,12 +109,8 @@ void select_2() {
 
 void order() {
 	int sel = 0;
-	char menu_name[32];
-	int amount;
-	int price;
-	int total_price;
-	char address[100];
-	char temp_query[1024];
+	int amount = 0;
+	char address[100] = { 0, };
 
 	while (1) {
 		printf("----------category----------\n");
@@ -133,12 +129,12 @@ void order() {
 
 			printf("수량을 입력하세요 : ");
 			scanf_s("%d", &amount);
-		}
+		} 
+		else if (sel == -1) {
+			printf("주문을 끝냅니다.\n");
+			break;
+		} 
 		else {
-			if (sel == -1) {
-				printf("주문을 끝냅니다.\n");
-				break;
-			}
 			printf("잘못입력하셨습니다.\n");
 			system("pause");
 		}
@@ -149,40 +145,6 @@ void order() {
 	printf("배송지를 입력하세요 : ");
 	getchar();
 	gets_s(address, sizeof(address));
-	//++ 배송지 db
-
-	//if (runQuery("select user()")) {
-	//	return -2;
-	//}
-
-	//row = mysql_fetch_row(res);
-	//id = strtok_s(row[0], "@", &context);
-	//strcpy_s(id, sizeof(id), row[0]);
-
-	sprintf_s(
-		temp_query,
-		sizeof(temp_query),
-		"select item_name, item_value from %s where item_num=%d",
-		selectedTable, selectedId);
-
-	if (runQuery(temp_query)) {
-		return -2;
-	}
-
-	row = mysql_fetch_row(res);
-	strcpy_s(menu_name, sizeof(menu_name), row[0]);
-	price = atoi(row[1]);
-
-	sprintf_s(
-		temp_query, 
-		sizeof(temp_query), 
-		"Insert into request "
-		"(id, menu_name, amount, total_price, address) "
-		"values "
-		"('%s', '%s', '%d', '%d', '%s')", 
-		currnetUserId, menu_name, amount, amount*price, address);
-
-	if (runQuery(temp_query)) {
-		return -2;
-	}
+	
+	orderDB(amount, address);
 }
