@@ -13,6 +13,8 @@ MYSQL *conn;
 
 #define TRUE 1
 #define FALSE 0
+#define gX 45
+#define gY 5
 
 char currnetUserId[32];
 char* selectedTable;
@@ -23,12 +25,9 @@ void gotoxy(int x, int y);
 void select_1();		//** 처음 선택문
 void select_2();		//** 로그인 후 선택문
 void order();			//** 주문
-						//void spend_point();		//** 마일리지 사용여부
-						//void charge_cash();		//** 캐쉬 충전
-						//void check_point();		//** 캐쉬 및 마일리지 확인
-						//void member_leave();	//** 회원탈퇴
+int root();
 
-						//** DB 함수들
+//** DB 함수들
 void errorMsg(char *errMsg);	//** 에러 메세지 출력
 int connectDB(void);			//** DB 연결
 void closeDB(void);				//** DB 연결 해제
@@ -58,3 +57,7 @@ int menu_meatDB();		//** 메뉴판_meat
 int menu_fruitsDB();	//** 메뉴판_fruits
 int menu_vegetableDB();	//** 메뉴판_vegetable
 int menu_fish();		//** 메뉴판_fish
+
+int memberlist();		//** 회원목록 출력
+int orderlist();		//** 주문목록 출력
+int income();			//** 정산
