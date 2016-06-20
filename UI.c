@@ -8,6 +8,7 @@ void select_1() {
 	system("cls");
 
 	while (1) {	//** while2
+		gotoxy(10,50);
 		printf("1. 로그인\n");
 		printf("2. 회원가입\n");
 		printf("이용하실 번호를 입력하세요 : ");
