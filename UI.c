@@ -1,4 +1,6 @@
 #include "func.h"
+#define gX 45
+#define gY 2
 
 char* pID;
 
@@ -8,15 +10,20 @@ void select_1() {
 	system("cls");
 
 	while (1) {	//** while2
-		gotoxy(10,50);
-		printf("1. 로그인\n");
-		printf("2. 회원가입\n");
+		gotoxy(gX,gY);
+		printf("----------메인화면입니다----------");
+		gotoxy(gX, gY+2);
+		printf("1. 로그인");
+		gotoxy(gX, gY+3);
+		printf("2. 회원가입");
+		gotoxy(gX, gY+4);
 		printf("이용하실 번호를 입력하세요 : ");
 		scanf_s("%d", &sel1);
 
 		switch (sel1) {	//** switch2
 		case 1:
 			system("cls");
+			gotoxy(gX, gY);
 			printf("-----------로그인-----------\n");
 			pID = login();	//** DB 로그인 함수
 
@@ -149,4 +156,12 @@ void order() {
 	gets_s(address, sizeof(address));
 	
 	orderDB(amount, address);
+}
+
+void gotoxy(int x, int y)
+{
+	COORD Cur;
+	Cur.X = x;
+	Cur.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), Cur);
 }

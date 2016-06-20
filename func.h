@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <Windows.h>
+
 #include <mysql.h>
 
 MYSQL_RES *res;
@@ -18,6 +19,7 @@ char* selectedTable;
 int selectedId;
 
 //** UI 함수들
+void gotoxy(int x, int y);
 void select_1();		//** 처음 선택문
 void select_2();		//** 로그인 후 선택문
 void order();			//** 주문
@@ -39,8 +41,8 @@ int member_cash();		//** 캐시테이블에 레코드 추가
 int member_point();		//** 포인트테이블에 레코드 추가
 
 char* login();			//** 로그인
-int orderDB();			//** 주문
-int spend_pointDB();	//** 마일리지 사용여부
+int orderDB(int amount, char address[]);			//** 주문
+int spend_pointDB(int point);	//** 마일리지 사용여부
 int charge_cashDB();	//** 캐쉬 충전
 int check_cash_point();	//** 캐쉬 및 마일리지 확인
 int saving_point(int total_price);	//** 포인트 적립
